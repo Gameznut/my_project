@@ -1,8 +1,9 @@
 <template>
   <div class="bg-[#c2f3fc] min-h-screen grid place-items-center">
-    <div>
+    <div class="max-w-[500px] w-full px-[15px]">
       <p v-if="loading" class="text-center w-full mb-[10px]">Getting the data</p>
-      <div class="w-[500px] bg-[#6f6fa0] rounded-[10px] overflow-hidden">
+      <div class="bg-[#6f6fa0] rounded-[10px] overflow-hidden">
+        <!-- Search bar -->
         <div class="bg-[#928d8d] flex items-center">
           <div class="w-full bg-[#928d8d] flex items-center px-[10px]">
             <input
@@ -28,9 +29,10 @@
             <Icon name="ri:search-2-line" size="20" />
           </button>
         </div>
-
+        <!-- Data  -->
         <div class="p-[10px] text-white">
-          <div class="flex justify-between w-full items-center mb-[30px]">
+          <!-- Data Header -->
+          <div class="flex-col sm:flex-row flex justify-between items-center mb-[30px]">
             <div>
               <p class="text-[20px]">
                 {{ (newLocation == "" ? "Lagos" : newLocation).toUpperCase() }}
@@ -42,8 +44,8 @@
             </div>
             <img id="wicon" class="w-[70px]" :src="result.icon" alt="weather icon" />
           </div>
-
-          <div class="text-[40px] flex justify-between">
+          <!-- Data Footer -->
+          <div class="text-[40px] block sm:flex justify-between">
             <div class="flex flex-col items-center">
               <p>{{ (result.temp - 273).toFixed(1) }}°C</p>
               <p class="text-sm">Temperature</p>
@@ -90,7 +92,6 @@ const fetchWeather = async () => {
     `https://api.openweathermap.org/data/2.5/weather?q=${searchWeather.value.trim()}&appid=1afcfea69e6424cf14395026269e10a8`
   );
 
-  console.log(loading.value);
   if (error.value) {
     useNuxtApp().$toast.error(error.value.data.message);
     loading.value = false;
