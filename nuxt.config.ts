@@ -1,3 +1,5 @@
+import { ThemeConfig } from "tailwindcss/types/config";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     app: {
@@ -16,7 +18,7 @@ export default defineNuxtConfig({
         }
     },
     css: ['~/assets/css/main.css'],
-    modules: ['nuxt-icon'],
+    modules: ['nuxt-icon', "@nuxt/content", '@vueuse/nuxt',],
     postcss: {
         plugins: {
             tailwindcss: {},
@@ -26,5 +28,11 @@ export default defineNuxtConfig({
     runtimeConfig: {
         weatherApi: "1afcfea69e6424cf14395026269e10a8"
 
+    },
+    content: {
+        highlight: {
+            // Theme used in all color schemes.
+            theme: "one-dark-pro"
+        }
     }
 })
